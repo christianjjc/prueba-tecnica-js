@@ -1,5 +1,7 @@
 let toggleVisible = false;
 const opciones = ['activo', 'inactivo','borrador', 'publicado'];
+const boton = document.getElementById("btn");
+const contenedor = document.getElementById("contenedor");
 
 const cargarOpciones=(array)=>{
     let i = 1;
@@ -8,42 +10,28 @@ const cargarOpciones=(array)=>{
         divOpciones.setAttribute("id",`opt-${i}`);
         divOpciones.innerText=el
         divOpciones.classList.add("option");
-
+        contenedor.appendChild(divOpciones)
+        i++
         divOpciones.addEventListener("click",()=>{
             seleccionar(divOpciones);
         })
-
-        document.getElementById("contenedor").appendChild(divOpciones)
-        i++
     }
 }
 
-cargarOpciones(opciones);
-
-
-const contenedor = document.getElementById("contenedor");
-document.getElementById("btn").addEventListener("click",()=>{
+boton.addEventListener("click",()=>{
     if (!toggleVisible) {
         contenedor.classList.remove("oculto");
-        contenedor.classList.add("visible");
         toggleVisible = true;
     } else {
-        contenedor.classList.remove("visible");
         contenedor.classList.add("oculto");
         toggleVisible = false;
     }
 })
 
 function seleccionar(divOpciones){
-    const opciones = document.getElementsByClassName("option")
-    for (const el of opciones) {
-        el.addEventListener("click",()=>{
-            document.getElementById("btn").textContent = el.textContent
-            document.getElementById("contenedor").classList.remove("visible");
-            document.getElementById("contenedor").classList.add("oculto");
-        })
-    }
+    boton.textContent = divOpciones.textContent
+    contenedor.classList.add("oculto");
     toggleVisible = false;
-} 
+}
 
-seleccionar();
+cargarOpciones(opciones);
