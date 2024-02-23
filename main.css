@@ -66,7 +66,17 @@ h2 {
     cursor: pointer;
     text-transform: capitalize;
     background-color: #fff;
+}
 
+.boton {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.arrow {
+    font-size: 18px;
 }
 
 #contenedor {
